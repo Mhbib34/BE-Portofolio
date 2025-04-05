@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 dotenv.config();
 export const router = express.Router();
 
-// Fungsi validasi email sederhana
 const isValidEmail = (email) => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
@@ -14,7 +13,6 @@ const isValidEmail = (email) => {
 router.post("/", async (req, res) => {
   const { name, email, message } = req.body;
 
-  // ✅ Validasi input
   if (!name || !email || !message) {
     return res.status(400).json({ error: "All fields are required." });
   }
@@ -23,7 +21,6 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ error: "Invalid email format." });
   }
 
-  // ✅ Transporter SMTP Brevo
   const transporter = nodemailer.createTransport({
     host: "smtp-relay.brevo.com",
     port: 587,
@@ -34,11 +31,10 @@ router.post("/", async (req, res) => {
     },
   });
 
-  // ✅ Konfigurasi email
   const mailOptions = {
-    from: `"${name}" <${process.env.SENDER_EMAIL}>`, // from harus dari email terverifikasi
-    to: process.env.TO_EMAIL, // email tujuan kamu sendiri
-    replyTo: email, // supaya bisa dibalas ke pengunjung
+    from: `"${name}" <${process.env.SENDER_EMAIL}>`,
+    to: process.env.TO_EMAIL,
+    replyTo: email,
     subject: `New Message from ${name}`,
     html: `
       <h3>You received a new message from your portfolio website:</h3>
