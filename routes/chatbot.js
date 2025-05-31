@@ -12,6 +12,10 @@ const templates = [
     answer: "Perkenalkan saya adalah MHAssist, seorang asisten virtual.",
   },
   {
+    keywords: ["ada", "dimana", "sekarang", "saya"],
+    answer: "Waduhh!!😅,Kita sekarang ada di websitenya Muhammad Habib nih!",
+  },
+  {
     keywords: ["who", "you"],
     answer: "Let me introduce myself, I am MHAssist, a virtual assistant.",
   },
